@@ -1,0 +1,12 @@
+build/
+diagrams/
+*.json
+*.toml
+
+*.d
+*.o
+makefile
+
+.clangd
+
+
