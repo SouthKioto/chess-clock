@@ -59,4 +59,3 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 | `READ_BIT(reg, bit)` | zwraca wartość bitu (0 lub 1) |
 | `IS_SET` / `IS_CLR` | sprawdza, czy bit jest ustawiony / wyzerowany |
 | `SET_MASK` / `CLR_MASK` / `TOGGLE_MASK` | operacje na wielu bitach naraz |
-| `WRITE_FIELD(reg, mask, pos, val)` | zapis wartości do pola bitowego |
