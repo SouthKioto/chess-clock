@@ -13,4 +13,8 @@
  * oraz taktowanie ma byc przed bibl. <util/delay.h>
  */
 
+#define LED_DDR DDRD
+#define LED_PORT PORTD
+#define LED_PIN PD2
+
 #endif // !PIN_CONF
