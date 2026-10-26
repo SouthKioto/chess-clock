@@ -9,4 +9,5 @@ makefile
 
 .clangd
 
-
+*.bin
+*.obj
