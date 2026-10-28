@@ -8,11 +8,25 @@ Zegar szachowy w C na ATmega328P (Arduino Uno). Projekt jest w trakcie budowy.
 
 - [x] Konfiguracja pinów (`pin_conf.h`) i własne makra bitowe (`bitops.h`)
 - [x] Test sprzętu: miganie diodą LED na PD2 (D2)
+- [x] utworzenie schematow blokowych
 
 ### TODO:
 
 - [ ] zmiana nazw makr/zmiennych na polski
-- [ ] utworzenie schematow blokowych
+
+### Zadania A:
+
+- [ ] Podłączenie przycisków i obsługa przerwan
+- [ ] Podłączenie buzzlera
+- [ ] Ustawienie czasu przed partią
+- [ ] Przełączanie czasu miedzy graczami
+
+### Zadania B:
+
+- [ ] Podłączenie diod i odliczanie czasu na przerwaniu timera
+- [ ] Podłączenie wyświetlacza LCD i wyświetlanie czasu oraz komunikatow
+- [ ] Pauza i wznowienie
+- [ ] Poddanie partii i koniec czasu
 
 ## Struktura projektu
 
