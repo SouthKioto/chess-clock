@@ -16,7 +16,7 @@ Zegar szachowy w C na ATmega328P (Arduino Uno). Projekt jest w trakcie budowy.
 
 ### Zadania A:
 
-- [ ] Podłączenie przycisków i obsługa przerwan
+- [x] Podłączenie przycisków i obsługa przerwan
 - [ ] Podłączenie buzzlera
 - [ ] Ustawienie czasu przed partią
 - [ ] Przełączanie czasu miedzy graczami
@@ -55,13 +55,6 @@ Piny i taktowanie ustawia się w `include/pin_conf.h`:
 
 `F_CPU` domyślnie wynosi `16000000UL` (Arduino Uno). Można go nadpisać flagą kompilatora.
 Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzięki czemu kod jest przenośny między Uno a gołą ATmega328P.
-
-## Schemat połączeń (aktualny)
-
-| Element    | Połączenie           |
-| ---------- | -------------------- |
-| Anoda LED  | D2 (PD2)             |
-| Katoda LED | rezystor 220 Ω → GND |
 
 ## Makra z `bitops.h`
 
@@ -120,32 +113,56 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 
 // DIODY LED (wyjscia)
 
-// INFO: dioda 1 - pin 2
-#define LED1_DDR DDRD
-#define LED1_PORT PORTD
-#define LED1_PIN PD2
+// INFO: dioda 1 (zolta) - ruch gracza 1 - pin 9
+#define LED1_DDR DDRB
+#define LED1_PORT PORTB
+#define LED1_PIN PB1
 
-// INFO: dioda 2 - pin 4
-#define LED2_DDR DDRD
-#define LED2_PORT PORTD
-#define LED2_PIN PD4
+// INFO: dioda 2 (pomaranczowa) - ruch gracza 2 - pin 8
+#define LED2_DDR DDRB
+#define LED2_PORT PORTB
+#define LED2_PIN PB0
 
-// INFO: dioda 3 - pin 7
+// INFO: dioda 3 (czerwona) - START/PAUZA - pin 7
 #define LED3_DDR DDRD
 #define LED3_PORT PORTD
 #define LED3_PIN PD7
+
+// INFO: dioda 4 (biala) - PODDANIE - pin 6
+#define LED4_DDR DDRD
+#define LED4_PORT PORTD
+#define LED4_PIN PD6
 
 // INFO: wbudowana dioda "L" - pin 13
 #define LED_L_DDR DDRB
 #define LED_L_PORT PORTB
 #define LED_L_PIN PB5
 
-// INFO: przycisk 1 - pin 3 (INT1, mozna obsluzyc przerwaniem)
+// PRZYCISKI (wejscia z pull-upem, wcisniety = 0, drugi styk do GND)
+
+// INFO: przycisk 1 - gracz 1 - pin 3
 #define BTN1_DDR DDRD
 #define BTN1_PORT PORTD
 #define BTN1_PIN PIND
 #define BTN1_BIT PD3
 
-#endif // !PIN_CONF_H
+// INFO: przycisk 2 - gracz 2 - pin 2
+#define BTN2_DDR DDRD
+#define BTN2_PORT PORTD
+#define BTN2_PIN PIND
+#define BTN2_BIT PD2
 
+// INFO: przycisk 3 - START/PAUZA - pin 4
+#define BTN3_DDR DDRD
+#define BTN3_PORT PORTD
+#define BTN3_PIN PIND
+#define BTN3_BIT PD4
+
+// INFO: przycisk 4 - PODDANIE - pin 5
+#define BTN4_DDR DDRD
+#define BTN4_PORT PORTD
+#define BTN4_PIN PIND
+#define BTN4_BIT PD5
+
+#endif // !PIN_CONF_H
 ```
