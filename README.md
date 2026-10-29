@@ -70,7 +70,7 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 
 ## Templatka pin_conf.h (mozna nazwe zmenic tylko dodac do .gitignore)
 
-````
+```
 #ifndef PIN_CONF_H
 #define PIN_CONF_H
 
@@ -164,5 +164,5 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 #define BTN4_PIN PIND
 #define BTN4_BIT PD5
 
-#endif // !PIN_CONF_H```
-````
+#endif // !PIN_CONF_H
+```
