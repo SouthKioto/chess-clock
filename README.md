@@ -56,13 +56,6 @@ Piny i taktowanie ustawia się w `include/pin_conf.h`:
 `F_CPU` domyślnie wynosi `16000000UL` (Arduino Uno). Można go nadpisać flagą kompilatora.
 Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzięki czemu kod jest przenośny między Uno a gołą ATmega328P.
 
-## Schemat połączeń (aktualny)
-
-| Element    | Połączenie           |
-| ---------- | -------------------- |
-| Anoda LED  | D2 (PD2)             |
-| Katoda LED | rezystor 220 Ω → GND |
-
 ## Makra z `bitops.h`
 
 | Makro                                   | Opis                                          |
