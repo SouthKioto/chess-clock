@@ -10,7 +10,6 @@ makefile
 *.txt
 
 .clangd
-pin_conf.h
 
 *.bin
 *.obj
