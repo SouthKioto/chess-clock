@@ -70,7 +70,7 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 
 ## Templatka pin_conf.h (mozna nazwe zmenic tylko dodac do .gitignore)
 
-```
+````
 #ifndef PIN_CONF_H
 #define PIN_CONF_H
 
@@ -97,72 +97,77 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 // REJESTRY PORTOW
 
 // INFO: wejscie/wyjscie (1 = wyjscie, 0 = wejscie)
-#define KIERUNEK_SZYNA_B DDRB
-#define KIERUNEK_SZYNA_C DDRC
-#define KIERUNEK_SZYNA_D DDRD
+#define KIERUNEK_SZYNA_B
+#define KIERUNEK_SZYNA_C
+#define KIERUNEK_SZYNA_D
 
 // INFO: zapis stanu (wyjscie) lub pull-up (wejscie)
-#define STAN_PORT_B PORTB
-#define STAN_PORT_C PORTC
-#define STAN_PORT_D PORTD
+#define STAN_PORT_B
+#define STAN_PORT_C
+#define STAN_PORT_D
 
 // INFO: odczyt aktualnego stanu pinow
-#define ODCZYT_PORT_B PINB
-#define ODCZYT_PORT_C PINC
-#define ODCZYT_PORT_D PIND
+#define ODCZYT_PORT_B
+#define ODCZYT_PORT_C
+#define ODCZYT_PORT_D
 
 // DIODY LED (wyjscia)
 
-// INFO: dioda 1 (zolta) - ruch gracza 1 - pin 9
-#define LED1_DDR DDRB
-#define LED1_PORT PORTB
-#define LED1_PIN PB1
+// INFO: dioda 1 (zolta) - ruch gracza 1
+#define LED1_DDR
+#define LED1_PORT
+#define LED1_PIN
 
-// INFO: dioda 2 (pomaranczowa) - ruch gracza 2 - pin 8
-#define LED2_DDR DDRB
-#define LED2_PORT PORTB
-#define LED2_PIN PB0
+// INFO: dioda 2 (pomaranczowa) - ruch gracza 2
+#define LED2_DDR
+#define LED2_PORT
+#define LED2_PIN
 
-// INFO: dioda 3 (czerwona) - START/PAUZA - pin 7
-#define LED3_DDR DDRD
-#define LED3_PORT PORTD
-#define LED3_PIN PD7
+// INFO: dioda 3 (czerwona) - START/PAUZA
+#define LED3_DDR
+#define LED3_PORT
+#define LED3_PIN
 
-// INFO: dioda 4 (biala) - PODDANIE - pin 6
-#define LED4_DDR DDRD
-#define LED4_PORT PORTD
-#define LED4_PIN PD6
+// INFO: dioda 4 (biala) - PODDANIE
+#define LED4_DDR
+#define LED4_PORT
+#define LED4_PIN
 
-// INFO: wbudowana dioda "L" - pin 13
-#define LED_L_DDR DDRB
-#define LED_L_PORT PORTB
-#define LED_L_PIN PB5
+// INFO: wbudowana dioda "L"
+#define LED_L_DDR
+#define LED_L_PORT
+#define LED_L_PIN
+
+// INFO: buzzler
+#define BUZZLER_DDR
+#define BUZZLER_PORT
+#define BUZZLER_PIN
 
 // PRZYCISKI (wejscia z pull-upem, wcisniety = 0, drugi styk do GND)
 
-// INFO: przycisk 1 - gracz 1 - pin 3
-#define BTN1_DDR DDRD
-#define BTN1_PORT PORTD
-#define BTN1_PIN PIND
-#define BTN1_BIT PD3
+// INFO: przycisk 1 - gracz 1
+#define BTN1_DDR
+#define BTN1_PORT
+#define BTN1_PIN
+#define BTN1_BIT
 
-// INFO: przycisk 2 - gracz 2 - pin 2
-#define BTN2_DDR DDRD
-#define BTN2_PORT PORTD
-#define BTN2_PIN PIND
-#define BTN2_BIT PD2
+// INFO: przycisk 2 - gracz 2
+#define BTN2_DDR
+#define BTN2_PORT
+#define BTN2_PIN
+#define BTN2_BIT
 
-// INFO: przycisk 3 - START/PAUZA - pin 4
-#define BTN3_DDR DDRD
-#define BTN3_PORT PORTD
-#define BTN3_PIN PIND
-#define BTN3_BIT PD4
+// INFO: przycisk 3 - START/PAUZA
+#define BTN3_DDR
+#define BTN3_PORT
+#define BTN3_PIN
+#define BTN3_BIT
 
-// INFO: przycisk 4 - PODDANIE - pin 5
-#define BTN4_DDR DDRD
-#define BTN4_PORT PORTD
-#define BTN4_PIN PIND
-#define BTN4_BIT PD5
+// INFO: przycisk 4 - PODDANIE
+#define BTN4_DDR
+#define BTN4_PORT
+#define BTN4_PIN
+#define BTN4_BIT
 
-#endif // !PIN_CONF_H
-```
+#endif // !PIN_CONF_H```
+````
