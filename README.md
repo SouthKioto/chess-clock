@@ -17,7 +17,7 @@ Zegar szachowy w C na ATmega328P (Arduino Uno). Projekt jest w trakcie budowy.
 ### Zadania A:
 
 - [x] Podłączenie przycisków i obsługa przerwan
-- [ ] Podłączenie buzzlera
+- [x] Podłączenie buzzlera
 - [ ] Ustawienie czasu przed partią
 - [ ] Przełączanie czasu miedzy graczami
 

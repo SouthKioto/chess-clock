@@ -1,4 +1,5 @@
 #include "bitops.h"
+#include "buzzler.h"
 #include "diody.h"
 #include "pin_conf.h"
 #include "przyciski.h"
@@ -53,8 +54,10 @@ static void pokazStan(Stan stan) {
 
 static void pokazPoddanie(void) {
   pokazStan(PODDANIE);
+
+  buzzlerWlacz(800);
   _delay_ms(1000);
-  // wyrzucenie klikniec z czasu swiecenia bialej
+  buzzlerWylacz();
   przyciskiPobierzZdarzenia();
 }
 
@@ -62,6 +65,7 @@ int main(void) {
 
   diodyInit();
   przyciskiInit();
+  buzzlerInit();
   sei();
 
   Stan stanAktualny = STOP;
@@ -69,7 +73,6 @@ int main(void) {
 
   pokazStan(stanAktualny);
   while (1) {
-
     uint8_t zdarzenia = przyciskiPobierzZdarzenia();
 
     if (zdarzenia != 0) {

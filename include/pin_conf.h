@@ -55,17 +55,18 @@
 #define LED3_PORT PORTD
 #define LED3_PIN PD7
 
-// INFO: dioda 4 (biala) - PODDANIE (pin 6)
-#define LED4_DDR DDRD
-#define LED4_PORT PORTD
-#define LED4_PIN PD6
+// INFO: dioda 4 (biala) - PODDANIE (pin 12)
+// (pin 6 = OC0A zostawiony wolny dla Timer0)
+#define LED4_DDR DDRB
+#define LED4_PORT PORTB
+#define LED4_PIN PB4
 
 // INFO: wbudowana dioda "L" (pin 13)
 #define LED_L_DDR DDRB
 #define LED_L_PORT PORTB
 #define LED_L_PIN PB5
 
-// INFO: buzzler - (pin 10)
+// INFO: buzzler - (pin 10, OC1B -> sterowany przez Timer1)
 #define BUZZLER_DDR DDRB
 #define BUZZLER_PORT PORTB
 #define BUZZLER_PIN PB2
