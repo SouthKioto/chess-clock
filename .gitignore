@@ -13,3 +13,5 @@ makefile
 
 *.bin
 *.obj
+
+platformio.ini

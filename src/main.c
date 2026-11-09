@@ -68,7 +68,7 @@ int main(void) {
   przyciskiInit();
   buzzlerInit();
   sei();
-  cTimerInit();
+  zegarInit();
 
   Stan stanAktualny = STOP;
   Gracze naKimZakonczono = GRACZ_1;

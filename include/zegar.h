@@ -7,8 +7,8 @@
 #define __int32 int32_t
 #endif
 
-void cTimerInit();
+void zegarInit();
 
-__int32 cTimerMs();
+__int32 zegarMs();
 
 #endif
