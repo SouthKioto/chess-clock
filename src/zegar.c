@@ -5,6 +5,7 @@
 #include <util/atomic.h>
 
 volatile unsigned __int32 czas_teraz = 0;
+volatile char czas_pauza = 0;
 
 void zegarInit() {
     // ATmega328
@@ -12,6 +13,23 @@ void zegarInit() {
     OCR0A = 249;
     TCCR0B = BIT(CS01) | BIT(CS00);
     TIMSK0 = BIT(OCIE0A);
+    czas_pauza = 0;
+}
+
+void zegarPauza() {
+    // TCCR0B pauza
+    CLR_MASK(TCCR0B, BIT(CS02) | BIT(CS01) | BIT(CS00));
+    czas_pauza = 1;
+}
+
+void zegarWznow() {
+    // TCCR0B wznowienie dokladnie od momentu w ktorym zostal zatrzymany 
+    SET_MASK(TCCR0B, BIT(CS01) | BIT(CS00));
+    czas_pauza = 0;
+}
+
+char zegarCzyPauza() {
+    return czas_pauza;
 }
 
 ISR(TIMER0_COMPA_vect) {

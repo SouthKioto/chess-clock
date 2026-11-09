@@ -9,6 +9,9 @@
 
 void zegarInit();
 
+void zegarPauza();
+void zegarWznow();
+
 __int32 zegarMs();
 
 #endif
