@@ -1,4 +1,12 @@
-#ifndef ZEGAR_H
-#define ZEGAR_H
+#ifndef TIMER_H
+#define TIMER_H
+#include <stdint.h>
 
-#endif // !ZEGAR_H
+void zegarInit();
+
+void zegarPauza();
+void zegarWznow();
+
+int32_t zegarMs();
+
+#endif
