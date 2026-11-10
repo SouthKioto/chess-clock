@@ -3,6 +3,7 @@
 #include "diody.h"
 #include "pin_conf.h"
 #include "przyciski.h"
+#include "timer.h"
 
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -67,6 +68,7 @@ int main(void) {
   przyciskiInit();
   buzzlerInit();
   sei();
+  zegarInit();
 
   Stan stanAktualny = STOP;
   Gracze naKimZakonczono = GRACZ_1;
