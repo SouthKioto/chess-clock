@@ -4,7 +4,7 @@
 #include <avr/interrupt.h>
 #include <util/atomic.h>
 
-volatile unsigned __int32 czas_teraz = 0;
+volatile int32_t czas_teraz = 0;
 volatile char czas_pauza = 0;
 
 void zegarInit() {
@@ -36,8 +36,8 @@ ISR(TIMER0_COMPA_vect) {
     czas_teraz++;
 }
 
-__int32 zegarMs() {
-    __int32 ms_teraz;
+int32_t zegarMs() {
+    int32_t ms_teraz;
     
     ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
         ms_teraz = czas_teraz;
