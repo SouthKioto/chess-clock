@@ -1,4 +1,4 @@
-#include "../include/zegar.h"
+#include "zegar.h"
 #include <util/delay.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
