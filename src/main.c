@@ -72,16 +72,26 @@ int main(void) {
         // przycisk1 = dodawanie czasu
         // przycisk2 = odejmowanie czasu
         if (zdarzenia & ZDARZENIE_GRACZ_1) {
-          czasUstaw(czasPobierzUstawiony() + 1);
-          buzzlerWlacz(100);
-          _delay_ms(100);
-          buzzlerWylacz();
+          if (czasUstaw(czasPobierzUstawiony() + 1)) {
+            buzzlerWlacz(100);
+            _delay_ms(100);
+            buzzlerWylacz();
+          } else {
+            buzzlerWlacz(500);
+            _delay_ms(400);
+            buzzlerWylacz();
+          }
         }
         if (zdarzenia & ZDARZENIE_GRACZ_2) {
-          czasUstaw(czasPobierzUstawiony() - 1);
-          buzzlerWlacz(900);
-          _delay_ms(100);
-          buzzlerWylacz();
+          if (czasUstaw(czasPobierzUstawiony() - 1)) {
+            buzzlerWlacz(900);
+            _delay_ms(100);
+            buzzlerWylacz();
+          } else {
+            buzzlerWlacz(500);
+            _delay_ms(400);
+            buzzlerWylacz();
+          }
         }
         if (zdarzenia & ZDARZENIE_START) {
           stanAktualny = STOP;

@@ -8,10 +8,13 @@
 
 static uint16_t ustawioneMinuty = DEFAULT_CZAS;
 
-void czasUstaw(uint16_t minuty) {
+bool czasUstaw(uint16_t minuty) {
 
   if (minuty >= MIN_CZAS && minuty <= MAX_CZAS) {
     ustawioneMinuty = minuty;
+    return true;
+  } else {
+    return false;
   }
 }
 uint16_t czasPobierzUstawiony(void) { return ustawioneMinuty; }
