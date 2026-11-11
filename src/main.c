@@ -1,5 +1,6 @@
 #include "bitops.h"
 #include "buzzler.h"
+#include "czas_gracza.h"
 #include "diody.h"
 #include "pin_conf.h"
 #include "przyciski.h"
@@ -8,8 +9,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-typedef enum { STOP, RUCH_GR_1, RUCH_GR_2, PODDANIE } Stan;
-typedef enum { GRACZ_1, GRACZ_2 } Gracze;
+typedef enum { USTAWIANIE, STOP, RUCH_GR_1, RUCH_GR_2, PODDANIE } Stan;
 
 /*
   L.yellow    - rund. gr. 1
@@ -35,6 +35,11 @@ static void pokazStan(Stan stan) {
   CLR_BIT(LED4_PORT, LED4_PIN);
 
   switch (stan) {
+  case USTAWIANIE:
+    SET_BIT(LED4_PORT, LED4_PIN);
+    SET_BIT(LED3_PORT, LED3_PIN);
+
+    break;
   case STOP:
     SET_BIT(LED3_PORT, LED3_PIN);
     break;
@@ -70,7 +75,7 @@ int main(void) {
   sei();
   zegarInit();
 
-  Stan stanAktualny = STOP;
+  Stan stanAktualny = USTAWIANIE;
   Gracze naKimZakonczono = GRACZ_1;
 
   pokazStan(stanAktualny);
@@ -78,8 +83,22 @@ int main(void) {
     uint8_t zdarzenia = przyciskiPobierzZdarzenia();
 
     if (zdarzenia != 0) {
-
       switch (stanAktualny) {
+      case USTAWIANIE:
+        // buttony:
+        // przycisk1 = dodawanie czasu
+        // przycisk2 = odejmowanie czasu
+        if (zdarzenia & ZDARZENIE_GRACZ_1) {
+          czasUstaw(czasPobierzUstawiony() + 1);
+        }
+        if (zdarzenia & ZDARZENIE_GRACZ_2) {
+          czasUstaw(czasPobierzUstawiony() - 1);
+        }
+        if (zdarzenia & ZDARZENIE_START) {
+          stanAktualny = STOP;
+        }
+        pokazStan(USTAWIANIE);
+        break;
       case STOP:
         if (zdarzenia & ZDARZENIE_START) {
           stanAktualny = RUCH_GR_1;
@@ -92,7 +111,7 @@ int main(void) {
         }
         if (zdarzenia & ZDARZENIE_PODDANIE) {
           pokazPoddanie();
-          stanAktualny = STOP;
+          stanAktualny = USTAWIANIE;
         }
         break;
 
@@ -103,7 +122,7 @@ int main(void) {
         }
         if (zdarzenia & ZDARZENIE_PODDANIE) {
           pokazPoddanie();
-          stanAktualny = STOP;
+          stanAktualny = USTAWIANIE;
         }
         break;
 

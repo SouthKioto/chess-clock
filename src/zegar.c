@@ -1,3 +1,4 @@
+#include "zegar.h"
 #include "bitops.h"
 #include <avr/interrupt.h>
 #include <avr/io.h>
