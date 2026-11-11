@@ -18,7 +18,7 @@ Zegar szachowy w C na ATmega328P (Arduino Uno). Projekt jest w trakcie budowy.
 
 - [x] Podłączenie przycisków i obsługa przerwan
 - [x] Podłączenie buzzlera
-- [ ] Ustawienie czasu przed partią
+- [x] Ustawienie czasu przed partią
 - [ ] Przełączanie czasu miedzy graczami
 
 ### Zadania B:
@@ -68,7 +68,7 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 | `IS_SET` / `IS_CLR`                     | sprawdza, czy bit jest ustawiony / wyzerowany |
 | `SET_MASK` / `CLR_MASK` / `TOGGLE_MASK` | operacje na wielu bitach naraz                |
 
-## Templatka pin_conf.h (mozna nazwe zmenic tylko dodac do .gitignore)
+## Templatka pin_conf.h
 
 ````
 #ifndef PIN_CONF_H

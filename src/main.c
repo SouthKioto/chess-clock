@@ -11,23 +11,6 @@
 
 typedef enum { USTAWIANIE, STOP, RUCH_GR_1, RUCH_GR_2, PODDANIE } Stan;
 
-/*
-  L.yellow    - rund. gr. 1
-  L.orange    - rund. gr. 2
-  L.czerwona  - START/PAUZA
-  L.white     - PODDANIE
-
-  przypadek testowy:
-  1. przycisniecie start (gasnie l.red)
-  2. runda gracza 1 (swieci L.yellow)
-  3. przyciska gracz 1 (zmiana na L.orange)
-  4. przyciska gracz 2 (zmana na l.yellow)
-  5. przyciska pauza (zaswieca sie l.red)
-  6. przyciska pauza (gasnie l.red)
-  7. przyciska poddanie (zaswieca sie l.white -> reset wszystkiego)
-
- */
-
 static void pokazStan(Stan stan) {
   CLR_BIT(LED1_PORT, LED1_PIN);
   CLR_BIT(LED2_PORT, LED2_PIN);
