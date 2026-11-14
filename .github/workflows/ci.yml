@@ -1,0 +1,74 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  MCU: atmega328p
+  F_CPU: 16000000UL
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalacja avr-gcc
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gcc-avr binutils-avr avr-libc
+
+      - name: Kompilacja
+        run: |
+          mkdir -p build
+          avr-gcc -mmcu=$MCU -DF_CPU=$F_CPU -Os -std=gnu11 \
+            -Wall -Wextra -Iinclude src/*.c -o build/chess-clock.elf
+          avr-objcopy -O ihex -R .eeprom build/chess-clock.elf build/chess-clock.hex
+
+      - name: Rozmiar programu
+        run: avr-size --format=avr --mcu=$MCU build/chess-clock.elf
+
+      - name: Zapisz .hex
+        uses: actions/upload-artifact@v4
+        with:
+          name: chess-clock-hex
+          path: build/chess-clock.hex
+
+  notify:
+    needs: build
+    if: failure() && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Znajdź PR i autora
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          PR=$(gh api "repos/$REPO/commits/$SHA/pulls" --jq '.[0].number // empty')
+          if [ -n "$PR" ]; then
+            AUTHOR=$(gh api "repos/$REPO/pulls/$PR" --jq '.user.login')
+          else
+            AUTHOR="${{ github.actor }}"
+          fi
+          echo "number=$PR"     >> "$GITHUB_OUTPUT"
+          echo "author=$AUTHOR" >> "$GITHUB_OUTPUT"
+
+      - name: Komentarz na PR (GitHub wyśle maila)
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment ${{ steps.pr.outputs.number }} \
+            --repo ${{ github.repository }} \
+            --body "@${{ steps.pr.outputs.author }} 🔴 Po merge'u tego PR \`master\` się nie kompiluje (avr-gcc).
+          Logi: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
