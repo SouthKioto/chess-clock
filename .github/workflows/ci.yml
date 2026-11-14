@@ -47,8 +47,6 @@ jobs:
     if: failure() && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Znajdź PR i autora
         id: pr
         env:
@@ -62,11 +60,8 @@ jobs:
           else
             AUTHOR="${{ github.actor }}"
           fi
-          EMAIL=$(git log -1 --format=%ae "$SHA")
-          case "$EMAIL" in *noreply*) EMAIL="" ;; esac
           echo "number=$PR"     >> "$GITHUB_OUTPUT"
           echo "author=$AUTHOR" >> "$GITHUB_OUTPUT"
-          echo "email=$EMAIL"   >> "$GITHUB_OUTPUT"
 
       - name: Komentarz na PR (GitHub wyśle maila)
         if: steps.pr.outputs.number != ''
@@ -77,21 +72,3 @@ jobs:
             --repo ${{ github.repository }} \
             --body "@${{ steps.pr.outputs.author }} 🔴 Po merge'u tego PR \`master\` się nie kompiluje (avr-gcc).
           Logi: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-
-      - name: Mail przez SMTP
-        if: steps.pr.outputs.email != ''
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          from: chess-clock CI <${{ secrets.MAIL_USERNAME }}>
-          to: ${{ steps.pr.outputs.email }}
-          subject: "❌ chess-clock: master zepsuty po PR #${{ steps.pr.outputs.number }}"
-          body: |
-            Cześć ${{ steps.pr.outputs.author }},
-            po merge'u Twojego PR master w chess-clock się nie kompiluje.
-            Commit: ${{ github.sha }}
-            Logi: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
