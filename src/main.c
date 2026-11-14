@@ -4,7 +4,6 @@
 #include "diody.h"
 #include "pin_conf.h"
 #include "przyciski.h"
-#include "zegar.h"
 
 #include <avr/interrupt.h>
 #include <util/delay.h>
