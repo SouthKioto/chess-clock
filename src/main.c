@@ -59,11 +59,22 @@ int main(void) {
   zegarInit();
 
   Stan stanAktualny = USTAWIANIE;
-  Gracze naKimZakonczono = GRACZ_1;
 
   pokazStan(stanAktualny);
   while (1) {
     uint8_t zdarzenia = przyciskiPobierzZdarzenia();
+
+    if (stanAktualny == RUCH_GR_1 || stanAktualny == RUCH_GR_2) {
+      czasAktualizuj();
+
+      if (czasKoniec()) {
+        buzzlerWlacz(500);
+        _delay_ms(400);
+        buzzlerWylacz();
+        stanAktualny = USTAWIANIE;
+        pokazStan(USTAWIANIE);
+      }
+    }
 
     if (zdarzenia != 0) {
       switch (stanAktualny) {
@@ -100,13 +111,14 @@ int main(void) {
         break;
       case STOP:
         if (zdarzenia & ZDARZENIE_START) {
+          czasStart();
           stanAktualny = RUCH_GR_1;
         }
         break;
       case RUCH_GR_1:
         if (zdarzenia & ZDARZENIE_GRACZ_1) {
-          naKimZakonczono = GRACZ_1;
           stanAktualny = RUCH_GR_2;
+          czasPrzelacz(GRACZ_2);
         }
         if (zdarzenia & ZDARZENIE_PODDANIE) {
           pokazPoddanie();
@@ -116,8 +128,8 @@ int main(void) {
 
       case RUCH_GR_2:
         if (zdarzenia & ZDARZENIE_GRACZ_2) {
-          naKimZakonczono = GRACZ_2;
           stanAktualny = RUCH_GR_1;
+          czasPrzelacz(GRACZ_1);
         }
         if (zdarzenia & ZDARZENIE_PODDANIE) {
           pokazPoddanie();
