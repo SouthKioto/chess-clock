@@ -9,4 +9,12 @@ typedef enum { GRACZ_1, GRACZ_2 } Gracze;
 bool czasUstaw(uint16_t minuty);
 uint16_t czasPobierzUstawiony(void);
 
+void czasStart(void);
+void czasPrzelacz(Gracze gracz);
+
+Gracze czasAktywny(void);
+int32_t czasPobierz(Gracze gracz);
+bool czasKoniec(void);
+void czasAktualizuj(void);
+
 #endif // !CZAS_GRACZA_H
