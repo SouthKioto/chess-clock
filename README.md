@@ -19,7 +19,7 @@ Zegar szachowy w C na ATmega328P (Arduino Uno). Projekt jest w trakcie budowy.
 - [x] Podłączenie przycisków i obsługa przerwan
 - [x] Podłączenie buzzlera
 - [x] Ustawienie czasu przed partią
-- [ ] Przełączanie czasu miedzy graczami
+- [x] Przełączanie czasu miedzy graczami
 
 ### Zadania B:
 
@@ -67,6 +67,14 @@ Piny definiowane są przez nazwy portów (PD2), a nie numery Arduino (D2), dzię
 | `READ_BIT(reg, bit)`                    | zwraca wartość bitu (0 lub 1)                 |
 | `IS_SET` / `IS_CLR`                     | sprawdza, czy bit jest ustawiony / wyzerowany |
 | `SET_MASK` / `CLR_MASK` / `TOGGLE_MASK` | operacje na wielu bitach naraz                |
+
+## Użyte komponenty
+
+- 4x Ledy
+- 1x Breadboard
+- 4x Przyciski (pushbutton)
+- 1x Buzzler (pasywny)
+- 4x Resystory
 
 ## Templatka pin_conf.h
 
